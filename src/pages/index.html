@@ -23,7 +23,7 @@
         </div>
         <div class="tabs-panel" id="box-new">
           <p>Add a box to your collection here.</p>
-          <form action="{{#api-url}}/boxes/new{{/api-url}}">
+          <form action="{{#api-url}}/users/1/boxes{{/api-url}}" method="post">
             <div class="row">
               <div class="small-3 columns">
                 <label for="box-name" class="text-right middle">Box Name</label>
@@ -45,7 +45,7 @@
             <div class="row">
               <div class="small-3 columns"></div>
               <div class="small-9 columns">
-                <button type="submit" class=" success button">Save</button>
+                <button type="submit" class="success button ajax-submit">Save</button>
               </div>
             </div>
           </form>
