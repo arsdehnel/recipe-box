@@ -1,8 +1,11 @@
 $(document).foundation();
 
+const API_ROOT = "http://localhost:4000/api";
+
 const BOX_URLS = {
-	"LIST": "http://localhost:4000/api/v1/users/1/boxes",
-	"SAVE": "http://localhost:4000/api/v1/users/1/boxes"
+	"LIST": "/v1/users/1/boxes",
+	"SAVE": "/v1/users/1/boxes",
+	"DELETE": "/v1/users/1/boxes"
 };
 
 var jsonObj = { 
@@ -13,10 +16,6 @@ var jsonObj = {
 		"status_code": "A"		
 	}
 };
-
-// curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '
-// {"box":{"user_id": 1, "name":"other thing", "status_code":"A", "read_order": 20 }}' 
-// http://localhost:4000/api/v1/users/1/boxes
 
 $(document).ready(
 
@@ -35,14 +34,40 @@ $(document).ready(
 						console.log(arguments);
 					}					
 				})
-			});
+			})
+			.on('click','.ajax-click',function(e){
+				e.preventDefault();
+				var $link = $(e.target);
+				$.ajax({
+					url: $link.attr('href'),
+					type: $link.attr('data-method'),
+					contentType: 'application/vnd.api+json',
+					complete: function(response,textStatus){
+						console.log(arguments);
+					}					
+				})
+			})
+			;
 
 		$.ajax({
-			url: BOX_URLS.LIST,
+
+			url: API_ROOT+BOX_URLS.LIST,
 			type: 'GET',
 			complete: function(response,textStatus){
-				console.log(arguments);
+				
+				if( response.status === 200 ){
+
+					var data = response.responseJSON.data;	
+
+					for( var i=0; i < data.length; i++ ){
+						$('#boxes-tabset').prepend(RecipeBox.templates.boxes.tab(data[i].attributes));
+						$('#boxes-tabset-content').append(RecipeBox.templates.boxes.tabPanel(data[i].attributes));
+					}
+
+				}
+
 			}
+
 		});
 
 	})(jQuery)

@@ -9,18 +9,10 @@
     <div class="callout">
       <h3>Your Recipe Collection</h3>
       <p>We have the concept of multiple recipe boxes for each user.  So you could have your "camping" recipes in one box and "at home" recipes in another.  Or maybe it's that you want to have a set of recipes for parties and a set for your family.  Or maybe one is for your nanny and then one is for yourself.  I guess what I'm trying to say is do whatever you want with the idea of haivng multiple boxes.  And, when it's all said and done, you clearly can <strong>just have one box</strong>!</p>
-      <ul class="tabs" data-tabs id="example-tabs">
-        <li class="tabs-title is-active"><a href="#box1" aria-selected="true">Box #1</a></li>
-        <li class="tabs-title"><a href="#box2">Box #2</a></li>
+      <ul class="tabs" data-tabs id="boxes-tabset">
         <li class="tabs-title"><a href="#box-new">Add Box</a></li>
       </ul>
-      <div class="tabs-content" data-tabs-content="example-tabs">
-        <div class="tabs-panel is-active" id="box1">
-          <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
-        </div>
-        <div class="tabs-panel" id="box2">
-          <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-        </div>
+      <div class="tabs-content" data-tabs-content="boxes-tabset" id="boxes-tabset-content">
         <div class="tabs-panel" id="box-new">
           <p>Add a box to your collection here.</p>
           <form action="{{#api-url}}/users/1/boxes{{/api-url}}" method="post">

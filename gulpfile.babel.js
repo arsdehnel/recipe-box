@@ -1,14 +1,17 @@
 'use strict';
 
-import plugins  from 'gulp-load-plugins';
-import yargs    from 'yargs';
-import browser  from 'browser-sync';
-import gulp     from 'gulp';
-import panini   from 'panini';
-import rimraf   from 'rimraf';
-import sherpa   from 'style-sherpa';
-import yaml     from 'js-yaml';
-import fs       from 'fs';
+import plugins    from 'gulp-load-plugins';
+import yargs      from 'yargs';
+import browser    from 'browser-sync';
+import gulp       from 'gulp';
+import panini     from 'panini';
+import rimraf     from 'rimraf';
+import sherpa     from 'style-sherpa';
+import yaml       from 'js-yaml';
+import fs         from 'fs';
+import handlebars from 'gulp-handlebars';
+import wrap       from 'gulp-wrap';
+import declare    from 'gulp-declare';
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -26,7 +29,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy), styleGuide));
+ gulp.series(clean, gulp.parallel(pages, sass, templates, javascript, images, copy), styleGuide));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -105,6 +108,25 @@ function javascript() {
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
+function templates() {
+  return gulp.src('src/templates/**/*.hbs')
+    .pipe(handlebars())
+    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      namespace: 'RecipeBox.templates',
+      noRedeclare: true, // Avoid duplicate declarations 
+      processName: function(filePath) {
+        console.log(declare.processNameByPath(filePath.replace('src/templates/', '')));
+        // Allow nesting based on path using gulp-declare's processNameByPath()
+        // You can remove this option completely if you aren't using nested folders
+        // Drop the client/templates/ folder from the namespace path by removing it from the filePath
+        return declare.processNameByPath(filePath.replace('src/templates/', ''));
+      }
+    }))
+    .pipe($.concat('templates.js'))
+    .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+}
+
 // Copy images to the "dist" folder
 // In production, the images are compressed
 function images() {
@@ -135,6 +157,7 @@ function watch() {
   gulp.watch('src/pages/**/*.html').on('change', gulp.series(pages, browser.reload));
   gulp.watch('src/{layouts,partials}/**/*.html').on('change', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/helpers/*.js').on('change', gulp.series(resetPages, pages, browser.reload));
+  gulp.watch('src/templates/**/*.hbs').on('change', gulp.series(templates, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss', sass);
   gulp.watch('src/assets/js/**/*.js').on('change', gulp.series(javascript, browser.reload));
   gulp.watch('src/assets/img/**/*').on('change', gulp.series(images, browser.reload));
