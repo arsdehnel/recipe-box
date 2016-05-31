@@ -1,0 +1,29 @@
+<h1>Add Box</h1>
+<p>Add a box to your collection here.</p>
+<form id="boxes--create" action="/users/1/boxes" method="post" >
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="box-name" class="text-right middle">Box Name</label>
+    </div>
+    <div class="small-9 columns">
+      <input type="text" name="name" id="box-name" placeholder="Name (will appear on box selection navigation)" aria-describedby="help--boxes-form--box-name">
+      <p class="help-text" id="help--boxes-form--box-name">The name that will appear in the boxes navigation and any box selection interface.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="box-desc" class="text-right middle">Box Description</label>
+    </div>
+    <div class="small-9 columns">
+      <textarea name="desc" id="box-desc"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <input type="hidden" name="read_order" value="9999" />
+    </div>
+    <div class="small-9 columns">
+      <button type="submit" class="success button ajax-create-submit">Save</button>
+    </div>
+  </div>
+</form>

@@ -1,50 +1,17 @@
 <div class="row">
-  <div class="large-12 columns">
-    <h1>Recipes</h1>
-  </div>
+    <div class="large-12 columns">
+        <h1>Recipes</h1>
+    </div>
 </div> 
 
 <div class="row">
-  <div class="large-12 columns">
-    <div class="callout">
-      <h3>Your Recipe Collection</h3>
-      <p>We have the concept of multiple recipe boxes for each user.  So you could have your "camping" recipes in one box and "at home" recipes in another.  Or maybe it's that you want to have a set of recipes for parties and a set for your family.  Or maybe one is for your nanny and then one is for yourself.  I guess what I'm trying to say is do whatever you want with the idea of haivng multiple boxes.  And, when it's all said and done, you clearly can <strong>just have one box</strong>!</p>
-      <ul class="tabs" data-tabs id="boxes-tabset">
-        <li class="tabs-title"><a href="#box-new">Add Box</a></li>
-      </ul>
-      <div class="tabs-content" data-tabs-content="boxes-tabset" id="boxes-tabset-content">
-        <div class="tabs-panel" id="box-new">
-          <p>Add a box to your collection here.</p>
-          <form action="{{#api-url}}/users/1/boxes{{/api-url}}" method="post">
-            <div class="row">
-              <div class="small-3 columns">
-                <label for="box-name" class="text-right middle">Box Name</label>
-              </div>
-              <div class="small-9 columns">
-                <input type="text" id="box-name" placeholder="Name (will appear on box selection navigation)" aria-describedby="help--boxes-form--box-name">
-                <p class="help-text" id="help--boxes-form--box-name">The name that will appear in the boxes navigation and any box selection interface.</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="small-3 columns">
-                <label for="box-desc" class="text-right middle">Box Description</label>
-              </div>
-              <div class="small-9 columns">
-                <textarea id="box-desc">
-                </textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="small-3 columns"></div>
-              <div class="small-9 columns">
-                <button type="submit" class="success button ajax-submit">Save</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>      
+    <div class="large-12 columns">
+        <div class="callout">
+            <h3>Your Recipe Collection</h3>
+            <p>We have the concept of multiple recipe boxes for each user.  So you could have your "camping" recipes in one box and "at home" recipes in another.  Or maybe it's that you want to have a set of recipes for parties and a set for your family.  Or maybe one is for your nanny and then one is for yourself.  I guess what I'm trying to say is do whatever you want with the idea of haivng multiple boxes.  And, when it's all said and done, you clearly can <strong>just have one box</strong>!</p>
+            <ul class="tabs" data-tabs id="boxes-tabset"></ul>
+            <a href="#" class="drawer-trigger" data-template="boxes.create">Add Box</a>
+            <div class="tabs-content" data-tabs-content="boxes-tabset" id="boxes-tabset-content"></div>
+        </div>      
     </div>
-  </div>
-</div>
-
 </div>

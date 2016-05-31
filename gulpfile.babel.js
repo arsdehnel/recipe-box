@@ -55,8 +55,7 @@ function pages() {
       root: 'src/pages/',
       layouts: 'src/layouts/',
       partials: 'src/partials/',
-      data: 'src/data/',
-      helpers: 'src/helpers/'
+      data: 'src/data/'
     }))
     .pipe(gulp.dest(PATHS.dist));
 }
@@ -113,7 +112,7 @@ function templates() {
     .pipe(handlebars())
     .pipe(wrap('Handlebars.template(<%= contents %>)'))
     .pipe(declare({
-      namespace: 'RecipeBox.templates',
+      namespace: 'RB.templates',
       noRedeclare: true, // Avoid duplicate declarations 
       processName: function(filePath) {
         console.log(declare.processNameByPath(filePath.replace('src/templates/', '')));
@@ -156,7 +155,6 @@ function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('src/pages/**/*.html').on('change', gulp.series(pages, browser.reload));
   gulp.watch('src/{layouts,partials}/**/*.html').on('change', gulp.series(resetPages, pages, browser.reload));
-  gulp.watch('src/helpers/*.js').on('change', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/templates/**/*.hbs').on('change', gulp.series(templates, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss', sass);
   gulp.watch('src/assets/js/**/*.js').on('change', gulp.series(javascript, browser.reload));

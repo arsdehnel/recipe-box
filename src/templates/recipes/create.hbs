@@ -1,0 +1,41 @@
+<h1>Add Recipe</h1>
+<p>Add a recipe to your collection here.</p>
+<form id="recipes--create" action="/recipes" method="post" >
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="recipe-name" class="text-right middle">Recipe Name</label>
+    </div>
+    <div class="small-9 columns">
+      <input type="text" name="name" id="recipe-name" placeholder="Name of recipe" aria-describedby="help--boxes-form--box-name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="box-name" class="text-right middle">Box</label>
+    </div>
+    <div class="small-9 columns">
+      <select name="box_id">
+        {{#each boxes}}
+          <option value="{{attributes.id}}">{{attributes.name}}</option>
+        {{/each}}
+      </select>
+      <p class="help-text" id="help--boxes-form--box-name">The name that will appear in the boxes navigation and any box selection interface.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="serving-size" class="text-right middle">Serving Size</label>
+    </div>
+    <div class="small-9 columns">
+      <input type="text" name="serving" id="serving-size" placeholder="Number of people served or quantity of recipe" aria-describedby="help--boxes-form--box-name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <input type="hidden" name="creator_id" value="1" />
+    </div>
+    <div class="small-9 columns">
+      <button type="submit" class="success button ajax-create-submit">Save</button>
+    </div>
+  </div>
+</form>

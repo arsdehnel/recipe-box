@@ -1,0 +1,15 @@
+.drawer {
+	position: absolute;
+	display: none;
+	top: 0;
+	right: 0;
+	left: 50%;
+	bottom: 0;
+	background: #eee;
+	padding: 1em;
+	// border-left: 2px solid #ccc;
+	box-shadow: 0 0 12px #666;
+	&.open {
+		display: block;
+	}
+}

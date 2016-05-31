@@ -1,4 +1,26 @@
-<div class="tabs-panel" id="box-{{id}}" role="tabpanel" aria-hidden="true" aria-labelledby="box-{{id}}-label">
-	<a href="http://localhost:4000/api/v1/users/1/boxes/{{id}}" class="ajax-click box-remove" data-method="DELETE">Remove</a>
-  	<p>Recipes for box {{id}} which is called {{name}}.</p>
+<div class="tabs-panel toggleable-form" id="box-{{id}}" role="tabpanel" aria-hidden="true" aria-labelledby="box-{{id}}-label">
+	<a href="/users/1/boxes/{{id}}" class="boxes--remove">
+		<svg class="icon icon-cross"><use xlink:href="#icon-cross"></use></svg>
+	</a>
+	<a href="/users/1/boxes/{{id}}" class="drawer-trigger" data-template="boxes.edit">
+		<svg class="icon icon-pencil"><use xlink:href="#icon-pencil"></use></svg> 
+	</a>
+
+  	<p>{{desc}}</p>
+
+  	<h2>Recipes</h2>
+    <button type="button" class="recipes--new" data-box-id="{{id}}">Add Recipe</button>
+  	<table>
+  		<thead>
+  			<tr>
+  				<th>
+  				 	Name
+  				</th>
+  				<th>
+  					Serving
+  				</th>
+  			</tr>
+  		</thead>
+  	</table>
 </div>
+
