@@ -3,13 +3,16 @@ RB.boxes = {
 
 	init: function(){
 
-		this.load();
+		if( $('body').hasClass('home') ){
+			this.load();
+			}			
 
 		$('body')
 			.on('click','#boxes--new',this.new)
 			.on('submit','#boxes--create',this.create)
 			.on('submit','#boxes--update',this.update)
 			.on('click','.boxes--remove',this.remove)
+			.on('change.zf.tabs','#boxes-tabset',this.tabChange)
 			;
 
 	},
@@ -151,6 +154,36 @@ RB.boxes = {
 
 		RB.api.ajax( ajaxRequest );
 
+	},
+	tabChange: function( e ){
+
+		var boxId = $(e.target).find('.is-active').attr('data-box-id');
+
+		if( ! (typeof boxId == 'undefined') ){
+
+			RB.api.ajax({
+				url: '/users/'+RB.utils.getUserId()+'/boxes/'+boxId+'/cards',
+				type: 'GET',
+				complete: function( response, textStatus ){
+
+					var $tbody = $('#box-'+boxId+' .recipes-listing tbody');
+
+					if( response.status === 200 ){
+						for( var i = 0; i < response.responseJSON.data.length; i++ ){
+							$tbody.append(RB.templates.boxes.recipeRow(response.responseJSON.data[i].attributes));
+						}
+					}else{
+						alert('crap');
+						console.log(response);
+					}
+				}
+			})
+
+		}else{
+			console.error('this probably should not be happening',e);
+		}
+
+		
 	},
 	tabAppend: function( dataObj ){ 
 		$('#boxes-tabset').append(RB.templates.boxes.tab(dataObj));

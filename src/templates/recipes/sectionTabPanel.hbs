@@ -1,0 +1,82 @@
+<div class="tabs-panel" id="section-{{id}}" role="tabpanel" aria-hidden="true" aria-labelledby="section-{{id}}-label">
+	<div class="row">
+		<div class="small-6 columns">
+			<form id="ingredients--maint" action="/recipes/{{recipeId}}/sections/{{id}}/ingredients" class="ingredients-listing">	
+				<h4>Ingredients</h4>
+				<table>
+					<thead>
+						<tr>
+							<th class="text-center">Quantity</th>
+							<th class="text-center">Unit</th>
+							<th class="text-center">Modifier</th>
+							<th class="text-center">Ingredient</th>
+							<th class="text-center">Treatment</th>
+							<th class="text-center">Actions</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+					<tfoot>
+						<tr>
+							<td>
+								<input type="text" name="quantity">
+							</td>
+							<td>
+								<input type="text" name="unit">
+							</td>
+							<td>
+								<input type="text" name="modifier">
+							</td>
+							<td>
+								<input type="text" name="ingredient">
+							</td>
+							<td>
+								<input type="text" name="treatment">
+							</td>
+							<td>
+								<input type="hidden" name="section_id" value="{{id}}">
+								<button type="submit">Save</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</form>
+		</div><!-- /.small-6 columns -->
+		<div class="small-6 columns">
+			<form id="instructions--maint" action="/recipes/{{recipeId}}/sections/{{id}}/instructions" class="instructions-listing">	
+				<h4>Instructions</h4>
+				<table>
+					<thead>
+						<tr>
+							<th rowspan="2" class="text-center">Step</th>
+							<th colspan="2" class="text-center">Time</th>
+							<th rowspan="2" class="text-center">Actions</th>
+						</tr>
+						<tr>
+							<th class="text-center">Active</th>
+							<th class="text-center">Total</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+					<tfoot>
+						<tr>
+							<td>
+								<textarea name="text" id="step-text" cols="30" rows="3"></textarea>
+							</td>
+							<td>
+								<input type="number" name="active_time">
+							</td>
+							<td>
+								<input type="number" name="total_time">
+							</td>
+							<td>
+								<input type="hidden" name="section_id" value="{{id}}">
+								<input type="hidden" name="order" value="4">
+								<button type="submit">Save</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</form>
+		</div><!-- /.small-6 columns -->
+	</div>
+</div>

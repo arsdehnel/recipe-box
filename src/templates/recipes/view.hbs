@@ -1,0 +1,13 @@
+<h3>{{name}}</h3>
+<button type="button" class="recipes--edit" data-recipe-id="{{id}}"><svg class="icon icon-pencil"><use xlink:href="#icon-pencil"></use></svg></button>
+<p>Serves: {{serving}}</p>
+<p>{{intro}}</p>
+<p><img src="{{image_path}}" /></p>
+<div class="row collapse">
+  <div class="medium-1 columns">
+    <ul class="tabs vertical" id="sections-tabset"></ul>
+  </div>
+  <div class="medium-11 columns">
+    <div id="sections-tabset-content" class="tabs-content vertical" data-tabs-content="sections-tabset"></div>
+  </div>
+</div>

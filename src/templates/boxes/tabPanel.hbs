@@ -1,4 +1,4 @@
-<div class="tabs-panel toggleable-form" id="box-{{id}}" role="tabpanel" aria-hidden="true" aria-labelledby="box-{{id}}-label">
+<div class="tabs-panel" id="box-{{id}}" role="tabpanel" aria-hidden="true" aria-labelledby="box-{{id}}-label">
 	<a href="/users/1/boxes/{{id}}" class="boxes--remove">
 		<svg class="icon icon-cross"><use xlink:href="#icon-cross"></use></svg>
 	</a>
@@ -10,9 +10,13 @@
 
   	<h2>Recipes</h2>
     <button type="button" class="recipes--new" data-box-id="{{id}}">Add Recipe</button>
-  	<table>
+
+  	<table class="recipes-listing">
   		<thead>
   			<tr>
+          <th>
+            ID
+          </th>
   				<th>
   				 	Name
   				</th>
@@ -21,6 +25,8 @@
   				</th>
   			</tr>
   		</thead>
+      <tbody>
+      </tbody>
   	</table>
 </div>
 

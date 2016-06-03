@@ -1,12 +1,28 @@
 <h1>Add Recipe</h1>
 <p>Add a recipe to your collection here.</p>
-<form id="recipes--create" action="/recipes" method="post" >
+<form id="recipes--maint" action="/recipes" method="post" >
   <div class="row">
     <div class="small-3 columns">
       <label for="recipe-name" class="text-right middle">Recipe Name</label>
     </div>
     <div class="small-9 columns">
-      <input type="text" name="name" id="recipe-name" placeholder="Name of recipe" aria-describedby="help--boxes-form--box-name">
+      <input type="text" name="name" id="recipe-name" placeholder="Name of recipe" aria-describedby="help--boxes-form--box-name" value="{{name}}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="recipe-intro" class="text-right middle">Introduction</label>
+    </div>
+    <div class="small-9 columns">
+      <textarea name="intro" id="recipe-intro">{{intro}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="recipe-image-path" class="text-right middle">Image</label>
+    </div>
+    <div class="small-9 columns">
+      <input type="text" name="image_path" id="recipe-image-path" placeholder="Path to image" aria-describedby="help--boxes-form--box-name" value="{{image_path}}">
     </div>
   </div>
   <div class="row">
@@ -27,12 +43,15 @@
       <label for="serving-size" class="text-right middle">Serving Size</label>
     </div>
     <div class="small-9 columns">
-      <input type="text" name="serving" id="serving-size" placeholder="Number of people served or quantity of recipe" aria-describedby="help--boxes-form--box-name">
+      <input type="text" name="serving" id="serving-size" placeholder="Number of people served or quantity of recipe" aria-describedby="help--boxes-form--box-name" value={{serving}}>
     </div>
   </div>
   <div class="row">
     <div class="small-3 columns">
       <input type="hidden" name="creator_id" value="1" />
+      {{#if id}}
+        <input type="hidden" name="id" value="{{id}}">
+      {{/if}}
     </div>
     <div class="small-9 columns">
       <button type="submit" class="success button ajax-create-submit">Save</button>
